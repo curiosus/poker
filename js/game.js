@@ -1,15 +1,11 @@
 /**
- * Created by erudite on 6/17/14.
+ * jepeterson@gmail.com 6/17/14.
  */
 
 
 (function startGame() {
 
     console.log('starting game...');
-
-
-
-
 
     var numberOfPlayers = 10;
     var players = [];
