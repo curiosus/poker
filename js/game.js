@@ -5,7 +5,7 @@
 
 (function startGame() {
 
-    console.log('starting game...');
+    console.log('Starting game...');
 
     var numberOfPlayers = 10;
     var players = [];
