@@ -1,0 +1,28 @@
+.player {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    background-color: #000000;
+    width: 300px;
+    height: 200px;
+}
+
+.card {
+    display: inline-block;
+    padding: 5px;
+    background-color: #ffffff;
+    width: 125px;
+    height: 175px;
+}
+
+.pot {
+    display: inline-block;
+    padding: 20px;
+    background-color: darkred;
+    width: 200px;
+    height: 200px;
+}
+
+body {
+    background-color: #006400;
+}
