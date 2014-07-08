@@ -23,6 +23,7 @@
         for (var i = 0; i < numberOfPlayers; i++) {
             var player = {id: 'p-' + i, stack: initialPlayerStack};
             player.stack = initialPlayerStack;
+            player.domElement = $('#' + player.id);
             players[i] = player;
         }
 
@@ -38,21 +39,33 @@
         for (var i = 0; i < players.length; i++) {
             var player = players[i];
             player.pocketCards = pocketCards();
-            console.log(player.stack);
-            console.log(player.pocketCards);
+            console.log('Player ' + player.id + ' has ' + player.pocketCards[0].rank + player.pocketCards[0].suit);
+            console.log('Player ' + player.id + ' has ' + player.pocketCards[1].rank + player.pocketCards[1].suit);
+            console.log('');
         }
     }
 
     function pocketCards() {
         var pocketCards = [];
-        var r;
         for (var i = 0; i < 2; i++) {
-            r = Math.floor(Math.random() * 52);
-            pocketCards.push(deck.cards[r]);
+            pocketCards.push(retrieveCard());
         }
-
         return pocketCards;
 
+
+    }
+
+    function retrieveCard() {
+       var card;
+       var r;
+       do {
+           r = Math.floor(Math.random() * 52);
+           if (! deck.cards[r].dealt) {
+               card = deck.cards[r];
+           }
+
+       } while(!card);
+       return card;
 
     }
 
@@ -86,7 +99,7 @@ function buildDeck(suits, ranks, deck) {
         var suit = suits[i];
         for (var j = 0; j < ranks.length; j++) {
             var rank = ranks[j];
-            var card = {rank: rank, suit: suit, value: i };
+            var card = {rank: rank, suit: suit, dealt: false };
             deck.cards.push(card);
         }
     }
