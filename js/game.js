@@ -15,6 +15,7 @@
     var suits = ['Diamonds', 'Spades', 'Clubs', 'Hearts'];
     var ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace'];
     var deck = {cards: []};
+    var playerNames = ['Sue Bob', 'Jesco', 'Mamie', 'Bo', 'Mousie', 'Terri Lynn', 'Dorsey', 'D. Ray', 'Bertie Mae', 'Poney'];
 
 
     (function init() {
@@ -24,6 +25,10 @@
             var player = {id: 'p-' + i, stack: initialPlayerStack};
             player.stack = initialPlayerStack;
             player.domElement = $('#' + player.id);
+            var s = '#' + player.id + '-header';
+            console.log(s);
+            player.name = playerNames[i];
+            $(s + '').text(player.name);
             players[i] = player;
         }
 
@@ -39,6 +44,10 @@
         for (var i = 0; i < players.length; i++) {
             var player = players[i];
             player.pocketCards = pocketCards();
+
+
+
+
             console.log('Player ' + player.id + ' has ' + player.pocketCards[0].rank + player.pocketCards[0].suit);
             console.log('Player ' + player.id + ' has ' + player.pocketCards[1].rank + player.pocketCards[1].suit);
             console.log('');
@@ -62,6 +71,7 @@
            r = Math.floor(Math.random() * 52);
            if (! deck.cards[r].dealt) {
                card = deck.cards[r];
+               deck.cards[r].dealt = true;
            }
 
        } while(!card);
@@ -99,7 +109,7 @@ function buildDeck(suits, ranks, deck) {
         var suit = suits[i];
         for (var j = 0; j < ranks.length; j++) {
             var rank = ranks[j];
-            var card = {rank: rank, suit: suit, dealt: false };
+            var card = {rank: rank, suit: suit, dealt: false, entityCode : '&#10084;' };
             deck.cards.push(card);
         }
     }
