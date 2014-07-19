@@ -17,6 +17,7 @@
 }
 
 .pocket-card {
+    background-color: darkslategray;
     margin: 10px;
     width: 75px;
     height: 100px;

@@ -26,7 +26,6 @@
             player.stack = initialPlayerStack;
             player.domElement = $('#' + player.id);
             var s = '#' + player.id + '-header';
-            console.log(s);
             player.name = playerNames[i];
             $(s + '').text(player.name);
             players[i] = player;
@@ -44,6 +43,13 @@
         for (var i = 0; i < players.length; i++) {
             var player = players[i];
             player.pocketCards = pocketCards();
+
+            var playerElement = '#' + player.id + '-pocket-card-';
+            for (var j = 0; j < 2; j++) {
+                var p = playerElement + j;
+                $(p + '').text(player.pocketCards[j].rank + ' ' + player.pocketCards[j].suit);
+                console.log('#' + playerElement + j);
+            }
 
 
 
