@@ -2,8 +2,6 @@
  * jepeterson@gmail.com 6/17/14.
  */
 
-
-
 (function startGame() {
 
     var pot = 0;
@@ -17,9 +15,7 @@
     var deck = {cards: []};
     var playerNames = ['Sue Bob', 'Jesco', 'Mamie', 'Bo', 'Mousie', 'Terri Lynn', 'Dorsey', 'D. Ray', 'Bertie Mae', 'Poney'];
 
-
     (function init() {
-
 
         for (var i = 0; i < numberOfPlayers; i++) {
             var player = {id: 'p-' + i, stack: initialPlayerStack};
@@ -30,7 +26,6 @@
             $(s + '').text(player.name);
             players[i] = player;
         }
-
 
     }());
 
@@ -43,22 +38,21 @@
         for (var i = 0; i < players.length; i++) {
             var player = players[i];
             player.pocketCards = pocketCards();
+            dealPocketCards(player);
+        }
 
-            var playerElement = '#' + player.id + '-pocket-card-';
-            for (var j = 0; j < 2; j++) {
-                var p = playerElement + j;
-                $(p + '').text(player.pocketCards[j].rank + ' ' + player.pocketCards[j].suit);
-                console.log('#' + playerElement + j);
-            }
+        playHand();
 
+    }
 
-
-
-            console.log('Player ' + player.id + ' has ' + player.pocketCards[0].rank + player.pocketCards[0].suit);
-            console.log('Player ' + player.id + ' has ' + player.pocketCards[1].rank + player.pocketCards[1].suit);
-            console.log('');
+    function dealPocketCards(player) {
+        var playerElement = '#' + player.id + '-pocket-card-';
+        for (var j = 0; j < 2; j++) {
+            var p = playerElement + j;
+            $(p + '').text(player.pocketCards[j].rank + ' ' + player.pocketCards[j].suit);
         }
     }
+
 
     function pocketCards() {
         var pocketCards = [];
@@ -66,40 +60,34 @@
             pocketCards.push(retrieveCard());
         }
         return pocketCards;
-
-
     }
 
     function retrieveCard() {
-       var card;
-       var r;
-       do {
-           r = Math.floor(Math.random() * 52);
-           if (! deck.cards[r].dealt) {
-               card = deck.cards[r];
-               deck.cards[r].dealt = true;
-           }
+        var card;
+        var r;
+        do {
+            r = Math.floor(Math.random() * 52);
+            if (!deck.cards[r].dealt) {
+                card = deck.cards[r];
+                deck.cards[r].dealt = true;
+            }
 
-       } while(!card);
-       return card;
+        } while (!card);
+        return card;
 
     }
 
-    /*
-     var game = function () {
-     var ms = 0;
-     for (var i = 0; i < players.length; i++) {
-     var player = players[i];
-     var playerElement = $('#' + player.id);
-     var originalColor = playerElement.css('background-color');
-     playerElement.css({'background-color' : 'yellow'});
-     setTimeout(changePlayerColor(playerElement, originalColor), ms = ms + 2000);
-     }
-     };
 
-     game();
-
-     */
+    function playHand() {
+        for (var i = 0; i < players.length; i++) {
+            var player = players[i];
+            var ms = 0;
+            var playerElement = $('#' + player.id);
+            var originalColor = playerElement.css('background-color');
+            playerElement.css({'background-color': 'yellow'});
+            setTimeout(changePlayerColor(playerElement, originalColor), ms = ms + 2000);
+        }
+    }
 
 })();
 
@@ -115,7 +103,7 @@ function buildDeck(suits, ranks, deck) {
         var suit = suits[i];
         for (var j = 0; j < ranks.length; j++) {
             var rank = ranks[j];
-            var card = {rank: rank, suit: suit, dealt: false, entityCode : '&#10084;' };
+            var card = {rank: rank, suit: suit, dealt: false, entityCode: '&#10084;' };
             deck.cards.push(card);
         }
     }
