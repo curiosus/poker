@@ -17,10 +17,10 @@
 }
 
 .pocket-card {
+    display: inline-flex;
     background-color: darkslategray;
-    margin: 10px;
-    width: 75px;
-    height: 100px;
+    width: 70px;
+    height: 98px;
 }
 
 
