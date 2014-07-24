@@ -74,9 +74,7 @@
 
         } while (!card);
         return card;
-
     }
-
 
     function playHand() {
         for (var i = 0; i < players.length; i++) {
@@ -85,18 +83,21 @@
             var playerElement = $('#' + player.id);
             var originalColor = playerElement.css('background-color');
             playerElement.css({'background-color': 'yellow'});
-            setTimeout(changePlayerColor(playerElement, originalColor), ms = ms + 2000);
+            var changeColor = changePlayerColor(playerElement, originalColor);
+            console.log("Hello");
+            setTimeout(changeColor, 20000);
+            console.log("Goodbye")
         }
     }
 
+    function changePlayerColor(playerElement, color) {
+        return function () {
+            playerElement.css({'background-color': color});
+            console.log("MKAY");
+        }
+    }
 })();
 
-
-function changePlayerColor(playerElement, color) {
-    return function () {
-        playerElement.css({'background-color': color});
-    }
-}
 
 function buildDeck(suits, ranks, deck) {
     for (var i = 0; i < suits.length; i++) {
